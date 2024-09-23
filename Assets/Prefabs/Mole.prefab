@@ -84,9 +84,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8aeac50b1f8ce134789bc74a549d4ec0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8980400910678699754}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8aeac50b1f8ce134789bc74a549d4ec0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3693434732794929179}
   m_SourcePrefab: {fileID: 100100000, guid: 8aeac50b1f8ce134789bc74a549d4ec0, type: 3}
 --- !u!1 &7732903443034893773 stripped
 GameObject:
@@ -184,19 +181,3 @@ MonoBehaviour:
   intervaloAtaque: 12
   tiempoCongelado: 2.1
   correccionVertical: 0.1
---- !u!114 &3693434732794929179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7732903443034893773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588fca274509eb84a83fc86236ed9d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saludMaxima: 1500
-  saludActual: 0
-  efectoMuerte: {fileID: 0}
-  desactivarEnemigo: 1
