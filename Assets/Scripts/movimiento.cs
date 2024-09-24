@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movimiento : MonoBehaviour
@@ -26,6 +28,14 @@ public class Movimiento : MonoBehaviour
 
     private bool golpeNormalActivo = false; // Estado del golpe normal
 
+    // Nuevas variables para el bloqueo de movimiento
+    public float tiempoBloqueoDisparo = 1f; // Tiempo de bloqueo después de disparar
+    public float tiempoBloqueoGolpe = 1f;   // Tiempo de bloqueo después del golpe fuerte
+    private bool bloqueoMovimiento = false;
+    private float tiempoDesbloqueo = 0f;
+
+    private GameObject bala; // Referencia a la bala instanciada
+
     void Start()
     {
         // Obtén el componente CharacterController
@@ -41,6 +51,12 @@ public class Movimiento : MonoBehaviour
 
     void Update()
     {
+        // Verifica si el bloqueo ha terminado
+        if (bloqueoMovimiento && Time.time >= tiempoDesbloqueo)
+        {
+            bloqueoMovimiento = false;
+        }
+
         // Verifica si el jugador está en el suelo
         isGrounded = controller.isGrounded;
 
@@ -49,9 +65,9 @@ public class Movimiento : MonoBehaviour
             velocity.y = -2f; // Un valor pequeño para mantener el personaje en el suelo
         }
 
-        // Verifica el movimiento del jugador
+        // Movimiento horizontal y vertical
         float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        float moveZ = bloqueoMovimiento ? 0f : Input.GetAxis("Vertical"); // Bloquea movimiento hacia adelante y atrás si está activo
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
         // Verifica si el jugador está moviéndose
@@ -82,11 +98,19 @@ public class Movimiento : MonoBehaviour
         // Controles de combate
         HandleCombat();
 
+        // Mantener la bala en frente del jugador hasta que se dispare
+        if (bala != null)
+        {
+            bala.transform.position = disparoPunto.position; // Mantiene la posición
+            bala.transform.rotation = disparoPunto.rotation; // Mantiene la rotación
+        }
+
         // Dispara la nueva bala cuando se presiona la tecla "Q" y se respeta el intervalo de disparo
         if (Input.GetKeyDown(KeyCode.Q) && Time.time >= tiempoUltimoDisparo + intervaloDisparo && nuevaBalaPrefab != null && disparoPunto != null)
         {
             DispararNuevaBala();
             tiempoUltimoDisparo = Time.time;
+            BloquearMovimiento(tiempoBloqueoDisparo);
         }
 
         // Activa la animación "Misil" cuando se presiona la tecla "E"
@@ -128,25 +152,35 @@ public class Movimiento : MonoBehaviour
             {
                 golpeFuerteArea.IniciarGolpeFuerte();
             }
+            BloquearMovimiento(tiempoBloqueoGolpe);
         }
     }
 
     void DispararNuevaBala()
     {
-        if (nuevaBalaPrefab != null && disparoPunto != null)
+        if (bala == null) // Si no hay una bala instanciada
         {
-            GameObject bala = Instantiate(nuevaBalaPrefab, disparoPunto.position, disparoPunto.rotation);
+            bala = Instantiate(nuevaBalaPrefab, disparoPunto.position, disparoPunto.rotation);
             Debug.Log("Bala instanciada en: " + disparoPunto.position);
-
+        }
+        else
+        {
             // Asegúrate de que la bala tenga un Rigidbody y esté configurado correctamente
             Rigidbody balaRb = bala.GetComponent<Rigidbody>();
             if (balaRb != null)
             {
                 balaRb.velocity = bala.transform.forward * 10f; // Ajusta la velocidad como necesites
             }
-
-            // Activa la animación "Lanzo"
-            animator.SetTrigger("Lanzo");
         }
+
+        // Activa la animación "Lanzo"
+        animator.SetTrigger("Lanzo");
+    }
+
+    // Función para bloquear el movimiento
+    void BloquearMovimiento(float tiempoBloqueo)
+    {
+        bloqueoMovimiento = true;
+        tiempoDesbloqueo = Time.time + tiempoBloqueo;
     }
 }

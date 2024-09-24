@@ -151,3 +151,5 @@ MonoBehaviour:
   velocidad: 10
   tiempoVida: 100
   retrasoActivacion: 1.5
+  "da\xF1o": 500
+  tagIgnorar: Player
