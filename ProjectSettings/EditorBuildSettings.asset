@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Menus principal, de pausa,  game  over y final/MenuPrincipal.unity
+    guid: 4bd4d8f070957a84297da0dc6e5aeb3b
+  - enabled: 1
     path: Assets/Mapa_Y_Escenas/NivelTutorial.unity
     guid: 5a463281e6e238742a45430f11e82829
   - enabled: 1
@@ -14,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mapa_Y_Escenas/Nivel2.unity
     guid: 146d247a62fa5394db04ff22647d53d5
+  - enabled: 1
+    path: Assets/Menus principal, de pausa,  game  over y final/PauseMenu.unity
+    guid: e1a97843fbee6544fbfeea1d3dcb89cd
   m_configObjects: {}
