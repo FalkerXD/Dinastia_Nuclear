@@ -80,9 +80,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 718797d704f04a34096155e92b8e9cdf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 421931714486891354}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 718797d704f04a34096155e92b8e9cdf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3961320605205653370}
   m_SourcePrefab: {fileID: 100100000, guid: 718797d704f04a34096155e92b8e9cdf, type: 3}
 --- !u!1 &7789650621341840649 stripped
 GameObject:
@@ -177,19 +174,3 @@ CapsuleCollider:
   m_Height: 2.0783672
   m_Direction: 1
   m_Center: {x: -5.1016175e-10, y: 1.0198207, z: 0.05072975}
---- !u!114 &3961320605205653370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789650621341840649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588fca274509eb84a83fc86236ed9d58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saludMaxima: 500
-  saludActual: 0
-  efectoMuerte: {fileID: 0}
-  desactivarEnemigo: 1
