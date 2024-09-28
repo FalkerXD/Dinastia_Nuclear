@@ -20,6 +20,7 @@
 *.userprefs
 *.pidb
 *.booproj
+*.log
 
 # Ignore Unity auto-generated meta files
 *.pidb.meta
@@ -32,3 +33,4 @@
  
 
 /[Aa]ssets/[Rr]ecursos*
+/Logs/
